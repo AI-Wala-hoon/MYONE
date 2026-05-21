@@ -1,0 +1,425 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:auto;
+}
+
+body{
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+    font-family:'Inter',sans-serif;
+}
+
+
+/* FILM GRAIN */
+
+body::before{
+    content:'';
+
+    position:fixed;
+    inset:0;
+
+    background:url('../images/grain.jpg');
+
+    opacity:0.05;
+
+    pointer-events:none;
+
+    z-index:9999;
+}
+
+
+/* GENERAL */
+
+.scene,
+.intro{
+    position:relative;
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:100px 10%;
+
+    overflow:hidden;
+
+    background-size:cover;
+    background-position:center;
+
+    background-attachment:scroll;
+}
+
+
+/* OVERLAY */
+
+.overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.85)
+    );
+
+    z-index:1;
+}
+
+
+/* BACKGROUNDS */
+
+.intro{
+    background-image:url('../images/scene1.jpg');
+}
+
+.scene-one{
+    background-image:
+    linear-gradient(
+        rgba(0,0,0,0.72),
+        rgba(0,0,0,0.85)
+    ),
+    url('../images/scene1.jpg');
+}
+
+.scene-two{
+    background-image:
+    linear-gradient(
+        rgba(0,0,0,0.42),
+        rgba(0,0,0,0.42)
+    ),
+    url('../images/scene2.jpg');
+}
+
+.scene-three{
+    background-image:
+    linear-gradient(
+        rgba(0,0,0,0.58),
+        rgba(0,0,0,0.70)
+    ),
+    url('../images/scene3.jpg');
+}
+
+.scene-four{
+    background-image:
+    linear-gradient(
+        rgba(0,0,0,0.25),
+        rgba(0,0,0,0.34)
+    ),
+    url('../images/scene4.jpg');
+}
+
+.final-scene{
+    background-image:
+    linear-gradient(
+        rgba(0,0,0,0.62),
+        rgba(0,0,0,0.70)
+    ),
+    url('../images/scene5.jpg');
+}
+
+
+/* CONTENT */
+
+.intro-content,
+.scene-content{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+
+    max-width:1000px;
+    transform:translateY(-20px);
+}
+
+
+/* TYPOGRAPHY */
+
+.small-line,
+.scene-tag{
+    letter-spacing:7px;
+    font-size:14px;
+    color:#d1b88c;
+
+    margin-bottom:30px;
+}
+
+.main-title,
+.scene-heading,
+.final-line{
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:clamp(3rem,7vw,7rem);
+
+    font-weight:300;
+
+    line-height:1.05;
+
+    letter-spacing:-1.5px;
+
+    color:#f8f3ec;
+
+    text-shadow:
+    0 0 40px rgba(0,0,0,0.75);
+
+    max-width:1000px;
+
+    margin:auto;
+}
+.scene-heading{
+    max-width:900px;
+}
+
+.final-line{
+    max-width:800px;
+}
+.scene-text{
+    margin-top:40px;
+
+    font-size:clamp(1.1rem,2vw,1.5rem);
+
+    line-height:2;
+
+    color:#d9d1c7;
+
+    max-width:700px;
+
+    margin-inline:auto;
+}
+.scene-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+.scene::before{
+    content:'';
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.03),
+        transparent 70%
+    );
+
+    z-index:1;
+}
+
+
+/* SPLITTYPE FIX */
+
+.line{
+    overflow:hidden;
+}
+
+
+/* CINEMATIC TEXT */
+
+.scene-heading .line,
+.main-title .line,
+.final-line .line{
+    display:block;
+}
+
+
+/* SCENE DEPTH */
+
+.scene{
+    transform-style:preserve-3d;
+}
+
+
+/* CINEMATIC OVERLAY */
+
+.scene::after,
+.intro::after{
+    content:'';
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.03),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+
+/* ATMOSPHERIC LIGHT */
+
+.intro::before,
+.scene::before{
+    content:'';
+
+    position:absolute;
+
+    width:140%;
+    height:140%;
+
+    top:-20%;
+    left:-20%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,210,140,0.06),
+        transparent 60%
+    );
+
+    animation:ambientPulse 2s ease-in-out infinite;
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+
+@keyframes ambientPulse{
+
+    0%{
+        transform:scale(1) translate(0,0);
+        opacity:0.5;
+    }
+
+    50%{
+        transform:scale(1.08) translate(-2%, -2%);
+        opacity:0.9;
+    }
+
+    100%{
+        transform:scale(1) translate(0,0);
+        opacity:0.5;
+    }
+}
+
+
+/* SCENE CONTENT */
+
+.scene-content{
+    position:relative;
+    z-index:3;
+}
+
+
+/* CINEMATIC REVEAL STATES */
+
+.reveal-tag,
+.reveal-text,
+.reveal-final{
+    opacity:1;
+    transform:translateY(60px);
+}
+
+
+/* SMOOTHER TEXT */
+
+.main-title,
+.scene-heading,
+.final-line{
+    text-wrap:balance;
+}
+
+
+/* FLOATING LIGHTS */
+
+.floating-lights{
+    position:absolute;
+    inset:0;
+
+    z-index:1;
+}
+
+.floating-lights span{
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    background:rgba(255,255,255,0.4);
+
+    border-radius:50%;
+
+    animation:float 4s linear infinite;
+}
+
+.floating-lights span:nth-child(1){
+    left:10%;
+    animation-delay:0s;
+}
+
+.floating-lights span:nth-child(2){
+    left:30%;
+    animation-delay:1s;
+}
+
+.floating-lights span:nth-child(3){
+    left:50%;
+    animation-delay:2s;
+}
+
+.floating-lights span:nth-child(4){
+    left:70%;
+    animation-delay:3s;
+}
+
+.floating-lights span:nth-child(5){
+    left:90%;
+    animation-delay:4s;
+}
+
+@keyframes float{
+
+    from{
+        transform:
+        translateY(100vh)
+        scale(0.5);
+
+        opacity:0;
+    }
+
+    30%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+        translateY(-20vh)
+        scale(1.4);
+
+        opacity:0;
+    }
+}
+
+
+/* REVEAL STATES */
+
+/* INITIAL REVEAL STATES */
+
+.reveal-tag,
+.reveal-text,
+.reveal-final{
+    opacity:0.8;
+    transform:translateY(60px);
+}
+.scene-heading {
+    overflow: hidden; /* This masks the lines as they animate up */
+}
+
+.scene-heading .line {
+    display: block; /* Ensures GSAP can manipulate each line individually */
+}
